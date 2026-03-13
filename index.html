@@ -28,15 +28,21 @@
     <style>
         body { background-color: #09090b; color: #f8fafc; overflow-x: hidden; scroll-behavior: smooth; }
         .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; }
+        
+        /* Teks Judul Gradasi */
         .text-gradient { background: linear-gradient(135deg, #60a5fa, #c084fc, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* EFEK CAHAYA */
         .text-glow { text-shadow: 0 0 20px rgba(236, 72, 153, 0.8); } 
         .text-glow-blue { text-shadow: 0 0 15px rgba(56, 189, 248, 0.8); }
+        
+        /* Scrollbar Custom */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #09090b; }
         ::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 10px; }
         
-        /* Pengaturan Snap Scrolling */
-        .slide-section { scroll-snap-align: start; min-height: 100vh; }
+        /* Pengaturan Snap Scrolling Full Screen */
+        .slide-section { scroll-snap-align: start; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding-top: 100px; padding-bottom: 50px; }
         .scroll-container { height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory; position: relative; }
     </style>
 </head>
@@ -46,64 +52,66 @@
     <div class="fixed bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-neonBlue/10 blur-[150px] -z-10 pointer-events-none"></div>
 
     <div class="fixed bottom-8 right-8 z-50 flex flex-col gap-3">
-        <button id="prevBtn" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-neonBlue hover:text-white hover:scale-110 transition shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+        <button id="prevBtn" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-neonBlue hover:scale-110 transition shadow-[0_0_15px_rgba(59,130,246,0.3)]">
             <i class="fa-solid fa-chevron-up text-xl"></i>
         </button>
-        <button id="nextBtn" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-neonPink hover:text-white hover:scale-110 transition shadow-[0_0_15px_rgba(236,72,153,0.3)]">
+        <button id="nextBtn" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-neonPink hover:scale-110 transition shadow-[0_0_15px_rgba(236,72,153,0.3)]">
             <i class="fa-solid fa-chevron-down text-xl"></i>
         </button>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 glass-card rounded-none border-t-0 border-x-0 border-b border-white/10 px-6 py-4 flex flex-wrap justify-between items-center gap-4">
-        <div class="flex items-center gap-4 flex-wrap">
+    <nav class="fixed top-0 w-full z-50 bg-white shadow-md px-6 py-3 flex flex-wrap justify-between items-center gap-4">
+        <div class="flex items-center gap-5 flex-wrap">
             <img src="logo_pojok_statistik.svg" alt="Pojok Statistik" class="h-10">
-            <img src="logo ubb.png" alt="UBB Logo" class="h-12 border-l-2 border-white/10 pl-4 bg-white/10 rounded pr-2">
+            <img src="logo ubb.png" alt="UBB Logo" class="h-12 border-l border-gray-200 pl-4">
             <div class="font-bold text-lg tracking-wider flex items-center gap-2">
                 <i class="fa-solid fa-rocket text-neonPink"></i>
-                <span>Pojok Statistik<span class="text-neonBlue">LevelUp</span></span>
+                <span class="text-gray-900">Pojok Statistik<span class="text-neonBlue">LevelUp</span></span>
             </div>
         </div>
         <div class="flex items-center gap-4 flex-wrap">
-            <img src="Logo BPS Babel (kanan biru)-01 (1).png" alt="BPS Babel Logo" class="h-10 bg-white/10 rounded px-2">
-            <div class="hidden lg:flex flex-col text-xs text-right text-gray-400">
+            <img src="Logo BPS Babel (kanan biru)-01 (1).png" alt="BPS Babel Logo" class="h-14">
+            <div class="hidden lg:flex flex-col text-xs text-right text-gray-600">
                 <span>Pusat Pembinaan & Pengembangan</span>
                 <span>Pojok Statistik UBB</span>
             </div>
         </div>
     </nav>
 
-    <header id="slide-1" class="slide-section flex flex-col items-center justify-center px-6 pt-24 text-center relative">
-        <div data-aos="fade-down" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium mb-6 text-neonBlue">
-            <i class="fa-solid fa-gamepad mr-2"></i>Sensus Ekonomi 2026
-        </div>
-        
-        <h1 data-aos="zoom-in" class="text-6xl md:text-8xl font-black mb-4 tracking-tight leading-tight">
-            LEVEL <span class="text-gradient">UP!</span> 🚀<br>
-            <span class="text-3xl md:text-5xl text-white text-glow-blue">Agen Statistik di Era Konten Kreatif</span>
-        </h1>
+    <header id="slide-1" class="slide-section px-6 text-center">
+        <div class="w-full flex flex-col items-center">
+            <div data-aos="fade-down" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium mb-6 text-neonBlue">
+                <i class="fa-solid fa-gamepad mr-2"></i>Sensus Ekonomi 2026
+            </div>
+            
+            <h1 data-aos="zoom-in" class="text-6xl md:text-8xl font-black mb-4 tracking-tight leading-tight">
+                LEVEL <span class="text-gradient">UP!</span> 🚀<br>
+                <span class="text-3xl md:text-5xl text-white text-glow-blue">Agen Statistik di Era Konten Kreatif</span>
+            </h1>
 
-        <div data-aos="zoom-in" data-aos-delay="100" class="mb-10 glass-card px-8 py-4 border-b-4 border-neonPink inline-block">
-            <p class="text-lg text-gray-400 mb-1">Speaker:</p>
-            <p class="text-3xl md:text-4xl font-black text-white tracking-wide">
-                Narezi <span class="text-neonPink text-glow">Febriansa</span>
-            </p>
-            <p class="text-sm text-gray-400 mt-2 font-semibold">13 Maret 2026 | Pojok Statistik UBB</p>
-        </div>
+            <div data-aos="zoom-in" data-aos-delay="100" class="mb-10 glass-card px-8 py-4 border-b-4 border-neonPink inline-block">
+                <p class="text-lg text-gray-300 mb-1">Speaker:</p>
+                <p class="text-3xl md:text-4xl font-black text-white tracking-wide">
+                    Narezi <span class="text-neonPink text-glow">Febriansa</span>
+                </p>
+                <p class="text-sm text-gray-300 mt-2 font-semibold">13 Maret 2026 | Pojok Statistik UBB</p>
+            </div>
 
-        <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-6 md:p-8 border-l-4 border-neonBlue text-left max-w-4xl">
-            <p class="text-gray-400 text-lg md:text-xl leading-relaxed">
-                "Halo semuanya! Vibe check dulu nih, suaranya mana? Hari ini kita nggak akan bahas teori statistik yang bikin ngantuk... Menjadi 'Agen Statistik' sekarang bukan cuma soal ngumpulin data, tapi gimana caranya data itu nggak berhenti di laci meja, tapi bisa nembus FYP TikTok atau Instagram. Siap buat upgrade skill? Kita mulai."
-            </p>
+            <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-6 md:p-8 border-l-4 border-neonBlue text-left max-w-4xl">
+                <p class="text-slate-100 text-lg md:text-xl leading-relaxed">
+                    "Halo semuanya! Vibe check dulu nih, suaranya mana? Hari ini kita nggak akan bahas teori statistik yang bikin ngantuk... Menjadi 'Agen Statistik' sekarang bukan cuma soal ngumpulin data, tapi gimana caranya data itu nggak berhenti di laci meja, tapi bisa nembus FYP TikTok atau Instagram. Siap buat upgrade skill? Kita mulai."
+                </p>
+            </div>
         </div>
     </header>
 
-    <section id="slide-2" class="slide-section py-20 px-6 max-w-4xl mx-auto flex items-center">
-        <div data-aos="fade-right" class="glass-card p-8 md:p-12 border-l-4 border-neonPink relative overflow-hidden flex flex-col md:flex-row items-center gap-10 w-full">
+    <section id="slide-2" class="slide-section px-6 max-w-4xl mx-auto">
+        <div data-aos="fade-right" class="glass-card p-8 md:p-12 border-l-4 border-neonPink relative overflow-hidden flex flex-col md:flex-row items-center gap-10 w-full z-10">
             <i class="fa-solid fa-mobile-screen-button absolute right-[-5%] top-[-10%] text-[15rem] text-white/5 rotate-12 -z-10"></i>
             <div class="flex-grow">
                 <h2 class="text-sm font-bold tracking-widest text-neonPink uppercase mb-2">Slide 2: The Vibe Check (Ice Breaker)</h2>
                 <h3 class="text-3xl md:text-4xl font-black mb-6">"Jujur-jujuran: Berapa jam screen time kamu kemarin?"</h3>
-                <div class="bg-black/30 p-6 rounded-xl border border-white/5 mb-6 text-gray-300 leading-relaxed">
+                <div class="bg-black/30 p-6 rounded-xl border border-white/5 mb-6 text-slate-100 leading-relaxed text-lg">
                     <p>Sebelum kita bahas data orang lain, mari kita lihat data kita sendiri. Ayo keluarin HP kalian, scan QR Code di depan. Jujur aja, <em>no cap</em>.</p>
                 </div>
             </div>
@@ -116,21 +124,14 @@
         </div>
     </section>
 
-    <section id="slide-3" class="slide-section py-20 px-6 max-w-4xl mx-auto flex items-center">
-        <div data-aos="fade-left" class="glass-card p-8 md:p-12 border-r-4 border-neonBlue text-right w-full">
-            <h2 class="text-sm font-bold tracking-widest text-neonBlue uppercase mb-2">Slide 3: Mindset Shift</h2>
-            <h3 class="text-3xl md:text-4xl font-black mb-6">Uninstall Mindset Lama. Kalian = <span class="text-neonBlue text-glow-blue">Data Benders</span>.</h3>
-            <div class="bg-black/30 p-6 rounded-xl border border-white/5 mb-6 text-gray-300 leading-relaxed text-left">
-                <p>Kalian di sini adalah <strong>Data Benders</strong>, pengendali data. Di era di mana informasi bertebaran tanpa filter, memegang data yang valid itu ibarat punya <em>cheat code</em> menuju momen besar seperti <strong>Sensus Ekonomi 2026</strong> nanti.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="slide-framework" class="slide-section py-24 px-6 bg-black/50 flex flex-col justify-center">
+    <section id="slide-framework" class="slide-section px-6 bg-black/50">
         <div class="max-w-6xl mx-auto w-full">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-12" data-aos="fade-up">
                 <h2 class="text-sm font-bold tracking-widest text-neonPink uppercase mb-2">C.R.E.A.T.E Skill Tree</h2>
-                <h3 class="text-4xl md:text-5xl font-black mb-4">Framework <span class="text-gradient">C.R.E.A.T.E</span></h3>
+                <h3 class="text-4xl md:text-5xl font-black mb-4 tracking-tight">Framework <span class="text-gradient">C.R.E.A.T.E</span></h3>
+                <p class="text-slate-100 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                    Lalu, gimana caranya 'Level Up'? Saya perkenalkan 6 skill tree utama (Framework C.R.E.A.T.E) yang harus kalian kuasai untuk mengubah data Excel menjadi konten yang FYP Material.
+                </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -138,85 +139,66 @@
                     <h4 class="text-xl font-bold mb-3 flex items-center gap-2 text-pink-400">
                         <span class="w-8 h-8 rounded bg-pink-400/20 flex items-center justify-center font-bold">C</span> Catchy Hook
                     </h4>
-                    <p class="text-sm text-gray-300"><strong>3 Detik Pertama Menentukan.</strong> Contoh: 'POV: Kamu baru sadar ternyata banyak warkop baru di kotamu!'</p>
+                    <p class="text-slate-200 text-sm leading-relaxed"><strong>3 Detik Pertama Menentukan.</strong> Pancing rasa penasaran! Contoh: 'POV: Kamu baru sadar ternyata banyak warkop baru di kotamu!'</p>
                 </div>
                 <div class="glass-card p-6 border-t-2 border-orange-400">
                     <h4 class="text-xl font-bold mb-3 flex items-center gap-2 text-orange-400">
                         <span class="w-8 h-8 rounded bg-orange-400/20 flex items-center justify-center font-bold">R</span> Relatable
                     </h4>
-                    <p class="text-sm text-gray-300"><strong>Bawa Makro ke Mikro.</strong> Kampanye SE2026? Bilang: 'Kita mendata berapa banyak coffee shop tempat kalian nongkrong di Babel!'</p>
+                    <p class="text-slate-200 text-sm leading-relaxed"><strong>Bawa Makro ke Mikro.</strong> Turunkan data ke bumi! Kampanye SE2026? Bilang: 'Kita mendata coffee shop nongkrong Babel!'</p>
                 </div>
                 <div class="glass-card p-6 border-t-2 border-yellow-400">
                     <h4 class="text-xl font-bold mb-3 flex items-center gap-2 text-yellow-400">
                         <span class="w-8 h-8 rounded bg-yellow-400/20 flex items-center justify-center font-bold">E</span> Entertaining
                     </h4>
-                    <p class="text-sm text-gray-300"><strong>Edutainment.</strong> Gunakan tren: Video GRWM siap-siap survei Sensus, atau fitur Green Screen TikTok.</p>
+                    <p class="text-slate-200 text-sm leading-relaxed"><strong>Edutainment.</strong> Gunakan tren visual: Video GRWM siap-siap survei, atau fitur Green Screen TikTok tunjuk angka kaget.</p>
                 </div>
                 <div class="glass-card p-6 border-t-2 border-green-400">
                     <h4 class="text-xl font-bold mb-3 flex items-center gap-2 text-green-400">
                         <span class="w-8 h-8 rounded bg-green-400/20 flex items-center justify-center font-bold">A</span> Authentic
                     </h4>
-                    <p class="text-sm text-gray-300"><strong>The Ultimate Flex: DATA ASLI.</strong> Saat kreator lain cuma beropini, kalian memegang data resmi BPS Babel.</p>
+                    <p class="text-slate-200 text-sm leading-relaxed"><strong>Flexing Data Asli.</strong> Gen Z radar anti-hoaks kuat. Saat lain beropini, kalian memegang validitas data resmi BPS Babel.</p>
                 </div>
                 <div class="glass-card p-6 border-t-2 border-blue-400">
                     <h4 class="text-xl font-bold mb-3 flex items-center gap-2 text-blue-400">
                         <span class="w-8 h-8 rounded bg-blue-400/20 flex items-center justify-center font-bold">T</span> Tools & Tech
                     </h4>
-                    <p class="text-sm text-gray-300"><strong>Work Smart, Not Hard.</strong> Pakai Canva & CapCut. Prompting AI: 'Ubah paragraf resmi ini jadi caption gaya Gen Z'.</p>
+                    <p class="text-slate-200 text-sm leading-relaxed"><strong>Work Smart.</strong> Pakai Canva & CapCut Templates. Prompting AI: 'Ubah rilis resmi ini jadi caption gaya anak Jaksel'.</p>
                 </div>
                 <div class="glass-card p-6 border-t-2 border-purple-400">
                     <h4 class="text-xl font-bold mb-3 flex items-center gap-2 text-purple-400">
                         <span class="w-8 h-8 rounded bg-purple-400/20 flex items-center justify-center font-bold">E</span> Emotion
                     </h4>
-                    <p class="text-sm text-gray-300"><strong>Bikin Baper/Kaget.</strong> Ramu data sampai audiens merasa kaget atau bangga. Itulah yang bikin konten di-share.</p>
+                    <p class="text-slate-200 text-sm leading-relaxed"><strong>Memicu Rasa.</strong> Orang lupa angkanya, tapi ingat rasanya. Ramu data sampai audiens merasa baper, kaget, atau bangga.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="slide-14" class="slide-section py-24 px-6 bg-black flex items-center">
-        <div data-aos="zoom-in" class="max-w-4xl mx-auto glass-card border-2 border-dashed border-neonYellow p-8 md:p-12 text-center relative w-full">
-            <h2 class="text-sm font-bold tracking-widest text-neonYellow uppercase mb-4">Slide 14: Mini Quest (Push Rank)</h2>
-            <h3 class="text-3xl md:text-5xl font-black text-neonYellow mb-8 text-glow">🎮 MINI QUEST: Live Challenge!</h3>
-            
-            <div class="bg-gray-900 text-left p-6 rounded-xl border border-white/10 mb-8 max-w-2xl mx-auto">
-                <p class="text-gray-400 font-mono text-xs mb-2">>_ DATA_TARGET.txt (Regional Babel Focus)</p>
-                <p class="text-lg text-white font-medium italic">"Menjelang Sensus Ekonomi 2026, pertumbuhan sektor usaha digital kreatif dan F&B (Food & Beverage) di Bangka Belitung diprediksi mendominasi kalangan anak muda."</p>
+    <section id="slide-16" class="slide-section px-6 relative">
+        <div class="max-w-4xl mx-auto text-center">
+            <div data-aos="fade-up" class="glass-card p-10 border-t-4 border-neonPink relative">
+                <h2 class="text-sm font-bold tracking-widest text-neonPink uppercase mb-2">Slide 16: CTA & QnA</h2>
+                <h3 class="text-4xl font-black mb-6 flex items-center gap-3 justify-center">Mission Accomplished! <span class="text-4xl">🏁</span></h3>
+                <p class="text-slate-100 mb-8 leading-relaxed max-w-2xl mx-auto text-lg">
+                    Misi hari ini selesai! Mulai besok, setiap ada rilis data baru atau kegiatan persiapan SE2026, bikin minimal 1 Story/Reels bergaya kreator. Jangan lupa tag medsos resmi Pojok Statistik UBB.
+                </p>
+                <button class="px-8 py-4 bg-white text-black font-bold rounded-full text-lg hover:scale-105 transition shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                    Buka Sesi QnA
+                </button>
             </div>
 
-            <p class="text-xl mb-6"><strong>Misi (5 Menit):</strong> Ngobrol sama teman sebelah. Bikin 1 ide judul konten video 15 detik pakai prinsip Catchy Hook!</p>
+            <footer class="mt-10 glass-card p-5 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4 bg-white/5 border-neonBlue border-b-2">
+                <div class="text-gray-300 text-sm">
+                    <span class="block text-xl font-bold text-white tracking-wide mb-1">Narezi Febriansa</span>
+                    Pojok Statistik Universitas Bangka Belitung
+                </div>
+                <div class="text-gray-300 text-sm md:text-right">
+                    <span class="block font-semibold text-white mb-1">13 Maret 2026</span>
+                    BPS Provinsi Kepulauan Bangka Belitung
+                </div>
+            </footer>
         </div>
-    </section>
-
-    <section id="slide-15-16" class="slide-section py-24 px-6 max-w-4xl mx-auto text-center relative flex flex-col justify-center">
-        <div data-aos="fade-up" class="mb-16 w-full">
-            <h2 class="text-sm font-bold tracking-widest text-gray-400 uppercase mb-4">Slide 15: The Conclusion</h2>
-            <blockquote class="text-3xl md:text-5xl font-black text-white leading-tight mb-8">
-                "Data tanpa cerita cuma angka di hardisk. Data dengan kreativitas <span class="text-neonBlue text-glow-blue">mengubah dunia</span>."
-            </blockquote>
-        </div>
-
-        <div data-aos="fade-up" class="glass-card p-10 border-t-4 border-neonPink relative">
-            <h2 class="text-sm font-bold tracking-widest text-neonPink uppercase mb-2">Slide 16: CTA & QnA</h2>
-            <h3 class="text-3xl font-black mb-6 flex items-center gap-3 justify-center">Mission Accomplished! <span class="text-4xl">🏁</span></h3>
-            <p class="text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
-                "Mulai besok, setiap ada rilis data baru atau persiapan SE2026, bikin minimal 1 Story/Reels. Jangan lupa tag medsos resmi Pojok Statistik UBB."
-            </p>
-            <button class="px-8 py-4 bg-white text-black font-bold rounded-full text-lg hover:scale-105 transition shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                Buka Sesi QnA
-            </button>
-        </div>
-
-        <footer class="mt-10 glass-card p-5 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4 bg-white/5 border-neonBlue border-b-2">
-            <div class="text-gray-300 text-sm">
-                <span class="block text-xl font-bold text-white text-glow-blue tracking-wide mb-1">Narezi Febriansa</span>
-                Pojok Statistik Universitas Bangka Belitung
-            </div>
-            <div class="text-gray-400 text-sm md:text-right">
-                <span class="block font-semibold text-white mb-1">13 Maret 2026</span>
-                BPS Provinsi Kepulauan Bangka Belitung
-            </div>
-        </footer>
     </section>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -230,6 +212,7 @@
             const sections = document.querySelectorAll('.slide-section');
             let currentIndex = 0;
 
+            // Update index saat di-scroll manual
             const updateIndexOnScroll = () => {
                 let minDistance = Infinity;
                 sections.forEach((section, index) => {
@@ -244,6 +227,7 @@
 
             container.addEventListener('scroll', updateIndexOnScroll);
 
+            // Tombol Next
             document.getElementById('nextBtn').addEventListener('click', () => {
                 if (currentIndex < sections.length - 1) {
                     currentIndex++;
@@ -251,6 +235,7 @@
                 }
             });
 
+            // Tombol Prev
             document.getElementById('prevBtn').addEventListener('click', () => {
                 if (currentIndex > 0) {
                     currentIndex--;
