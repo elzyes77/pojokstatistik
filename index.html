@@ -36,7 +36,8 @@
         
         /* Layout Mobile-First */
         .scroll-container { height: 100dvh; overflow-y: auto; overflow-x: hidden; scroll-snap-type: y proximity; }
-        .slide-section { scroll-snap-align: start; min-height: 100dvh; height: auto; display: flex; flex-direction: column; justify-content: center; padding: 80px 16px 40px 16px; width: 100%; max-width: 100vw; }
+        /* slide-section diset agar selalu punya min-height seukuran layar, tapi bisa melar ke bawah jika konten panjang */
+        .slide-section { scroll-snap-align: start; min-height: 100dvh; height: auto; display: flex; flex-direction: column; justify-content: center; padding: 100px 16px 40px 16px; width: 100%; max-width: 100vw; }
     </style>
 </head>
 <body class="antialiased selection:bg-neonPink selection:text-white scroll-container" id="main-container">
@@ -44,7 +45,7 @@
     <div class="fixed top-[-10%] left-[-10%] w-[300px] h-[300px] md:w-[50vw] md:h-[50vw] rounded-full bg-neonPurple/10 blur-[100px] md:blur-[150px] -z-10 pointer-events-none"></div>
     <div class="fixed bottom-[-10%] right-[-10%] w-[300px] h-[300px] md:w-[50vw] md:h-[50vw] rounded-full bg-neonBlue/10 blur-[100px] md:blur-[150px] -z-10 pointer-events-none"></div>
 
-    <div class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 opacity-60 hover:opacity-100 transition-opacity">
+    <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 flex flex-col gap-2 opacity-60 hover:opacity-100 transition-opacity">
         <button id="prevBtn" class="w-10 h-10 md:w-12 md:h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-neonBlue transition shadow-lg">
             <i class="fa-solid fa-chevron-up text-sm md:text-xl"></i>
         </button>
@@ -124,6 +125,7 @@
     <section id="section-3" class="slide-section">
         <div class="w-full max-w-4xl mx-auto">
             <div data-aos="fade-up" class="glass-card p-6 md:p-12 border-t-4 border-neonBlue text-center relative overflow-hidden">
+                <i class="fa-solid fa-brain absolute left-[-5%] top-[-10%] text-[10rem] md:text-[15rem] text-white/5 -z-10"></i>
                 <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonBlue uppercase mb-2">Slide 3: Identity</h2>
                 <h3 class="text-3xl md:text-6xl font-black mb-4 md:mb-6 leading-tight">
                     Uninstall Mindset Lama.<br>Kalian = <span class="text-neonBlue text-glow-blue">Data Benders</span>.
@@ -154,10 +156,10 @@
                     <h4 class="font-bold text-sm md:text-xl text-white">Creator Economy</h4>
                     <p class="text-slate-300 text-xs md:text-sm mt-1">Perhatian (attention) adalah mata uang baru yang bernilai raksasa.</p>
                 </div>
-                <div data-aos="zoom-in" data-aos-delay="200" class="glass-card p-5 border-t-2 md:border-t-4 border-neonBlue text-center">
+                <div data-aos="zoom-in" data-aos-delay="200" class="glass-card p-5 border-t-2 md:border-t-4 border-neonBlue text-center sm:col-span-2 md:col-span-1">
                     <span class="block text-3xl md:text-5xl font-black text-neonBlue mb-2 text-glow-blue">40%</span>
                     <h4 class="font-bold text-sm md:text-xl text-white">The "Search" Shift</h4>
-                    <p class="text-slate-300 text-xs md:text-sm mt-1">Anak muda pakai TikTok/IG mencari "Visual Answer", bukan Google.</p>
+                    <p class="text-slate-300 text-xs md:text-sm mt-1">Anak muda tidak pakai Google, mereka pakai TikTok/IG mencari Visual Answer.</p>
                 </div>
             </div>
         </div>
@@ -189,6 +191,7 @@
     <section id="section-6" class="slide-section">
         <div class="w-full max-w-6xl mx-auto">
             <div class="text-center mb-6" data-aos="fade-up">
+                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonYellow uppercase mb-1">Slide 7-9: Skill Tree Part 1</h2>
                 <h3 class="text-2xl md:text-5xl font-black mb-2">Framework <span class="text-gradient">C.R.E.A.T.E</span></h3>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -214,12 +217,17 @@
 
     <section id="section-7" class="slide-section">
         <div class="w-full max-w-6xl mx-auto">
+            <div class="text-center mb-6" data-aos="fade-up">
+                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonYellow uppercase mb-1">Slide 10-11: Skill Tree Part 2</h2>
+                <h3 class="text-2xl md:text-5xl font-black mb-2">Level Up Your <span class="text-gradient">Content</span></h3>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div data-aos="fade-right" class="glass-card p-5 border-l-4 border-yellow-400">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-10 h-10 rounded-xl bg-yellow-400 text-black flex items-center justify-center font-black text-xl">E</div>
                         <h4 class="text-xl md:text-2xl font-bold text-white">Entertaining</h4>
                     </div>
+                    <p class="text-yellow-400 font-bold mb-1 text-xs md:text-sm">Edutainment</p>
                     <p class="text-slate-200 text-xs md:text-sm">Gunakan tren: Video <strong>GRWM</strong> siap-siap survei, atau fitur <strong>Green Screen</strong> tunjuk angka kaget.</p>
                 </div>
                 <div data-aos="fade-left" class="glass-card p-5 border-l-4 border-green-500">
@@ -227,6 +235,7 @@
                         <div class="w-10 h-10 rounded-xl bg-green-500 text-white flex items-center justify-center font-black text-xl">A</div>
                         <h4 class="text-xl md:text-2xl font-bold text-white">Authentic</h4>
                     </div>
+                    <p class="text-green-400 font-bold mb-1 text-xs md:text-sm">The Ultimate Flex: DATA ASLI</p>
                     <p class="text-slate-200 text-xs md:text-sm">Kalian memegang data resmi BPS Babel. Saat yang lain beropini, kalian punya fakta absolut.</p>
                 </div>
             </div>
@@ -235,12 +244,17 @@
 
     <section id="section-8" class="slide-section">
         <div class="w-full max-w-6xl mx-auto">
+            <div class="text-center mb-6" data-aos="fade-up">
+                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonYellow uppercase mb-1">Slide 12-13: Skill Tree Part 3</h2>
+                <h3 class="text-2xl md:text-5xl font-black mb-2">The Final <span class="text-gradient">Touch</span></h3>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div data-aos="fade-right" class="glass-card p-5 border-l-4 border-blue-500">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-10 h-10 rounded-xl bg-blue-500 text-white flex items-center justify-center font-black text-xl">T</div>
                         <h4 class="text-xl md:text-2xl font-bold text-white">Tools & Tech</h4>
                     </div>
+                    <p class="text-blue-400 font-bold mb-1 text-xs md:text-sm">Work Smart, Not Hard</p>
                     <p class="text-slate-200 text-xs md:text-sm">Pakai Canva, CapCut, dan Gemini/ChatGPT untuk bantu bikin caption gaya Gen Z.</p>
                 </div>
                 <div data-aos="fade-left" class="glass-card p-5 border-l-4 border-purple-500">
@@ -248,15 +262,39 @@
                         <div class="w-10 h-10 rounded-xl bg-purple-500 text-white flex items-center justify-center font-black text-xl">E</div>
                         <h4 class="text-xl md:text-2xl font-bold text-white">Emotion</h4>
                     </div>
-                    <p class="text-slate-200 text-xs md:text-sm">Data yang memicu emosi (kaget, bangga, validasi) adalah data yang di-share!</p>
+                    <p class="text-purple-400 font-bold mb-1 text-xs md:text-sm">Memicu Baper/Kaget</p>
+                    <p class="text-slate-200 text-xs md:text-sm">Data yang memicu emosi (kaget, bangga, validasi) adalah data yang paling sering di-share!</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="section-9" class="slide-section">
+        <div class="w-full max-w-4xl mx-auto">
+            <div data-aos="zoom-in" class="glass-card p-6 md:p-12 border-t-4 border-dashed border-neonPink text-center relative overflow-hidden bg-pink-900/10">
+                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonPink uppercase mb-2">Intermezzo Break ☕</h2>
+                <h3 class="text-3xl md:text-5xl font-black mb-6 text-white text-glow">Ekspektasi vs Realita 🫠</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 md:mt-6">
+                    <div class="bg-black/50 p-5 md:p-6 rounded-xl border border-white/10 flex flex-col items-center justify-center">
+                        <p class="text-gray-400 font-bold mb-2 md:mb-3 uppercase tracking-widest text-[10px] md:text-xs">Ekspektasi Netizen</p>
+                        <div class="text-5xl md:text-6xl mb-3 md:mb-4">🧑‍💻✨</div>
+                        <p class="text-slate-200 text-xs md:text-sm">"Kerja di BPS pasti enak, duduk anteng di ruangan ber-AC cuma ngotak-ngatik angka di komputer."</p>
+                    </div>
+                    <div class="bg-black/50 p-5 md:p-6 rounded-xl border border-neonPink flex flex-col items-center justify-center relative shadow-[0_0_20px_rgba(236,72,153,0.2)]">
+                        <p class="text-neonPink font-bold mb-2 md:mb-3 uppercase tracking-widest text-[10px] md:text-xs">Realita Lapangan</p>
+                        <div class="text-5xl md:text-6xl mb-3 md:mb-4">🐕🏃‍♂️💨</div>
+                        <p class="text-slate-200 text-xs md:text-sm">Dikejar anjing peliharaan responden pas lagi <em>door-to-door</em> Sensus Ekonomi... Balik ke kantor disuruh bos bikin konten FYP TikTok. 👁️👄👁️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-10" class="slide-section">
         <div class="w-full max-w-6xl mx-auto">
             <div class="text-center mb-6" data-aos="fade-up">
+                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonBlue uppercase mb-1">Case Study</h2>
                 <h3 class="text-2xl md:text-5xl font-black mb-2">Bedah Konten: <span class="text-neonBlue text-glow-blue">BRS vs FYP 🛠️</span></h3>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -276,16 +314,50 @@
         </div>
     </section>
 
-    <section id="section-10" class="slide-section flex flex-col justify-between">
+    <section id="section-11" class="slide-section">
+        <div class="w-full max-w-4xl mx-auto">
+            <div data-aos="zoom-in" class="glass-card p-6 md:p-10 border-4 border-neonPurple relative overflow-hidden bg-purple-900/10">
+                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonPurple uppercase mb-2">Hacks</h2>
+                <h3 class="text-2xl md:text-5xl font-black mb-4 md:mb-6 text-white">Jurus Nge-Prompt AI 🤖</h3>
+                
+                <div class="bg-black/60 p-4 md:p-6 rounded-xl border border-purple-500/30 text-left shadow-2xl">
+                    <p class="text-[10px] md:text-lg text-white font-medium leading-relaxed font-mono">
+                        "Bertindaklah sebagai <span class="text-neonPink">[Sosmed Manager BPS Babel]</span>. Buatkan skrip TikTok durasi <span class="text-neonPink">[30 detik]</span> yang menjelaskan data <span class="text-neonPink">[Inflasi Februari 2026]</span>.<br><br>
+                        Gunakan gaya bahasa <span class="text-neonPink">[Gen Z]</span>, tambahkan <span class="text-neonPink">[Hook memancing]</span>, akhiri dengan CTA <span class="text-neonPink">[baca web BPS]</span>."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-12" class="slide-section">
+        <div class="w-full max-w-5xl mx-auto">
+            <div data-aos="zoom-in" class="glass-card p-6 md:p-14 border-4 border-dashed border-neonYellow text-center relative bg-yellow-900/10">
+                <h3 class="text-3xl md:text-6xl font-black text-neonYellow mb-4 md:mb-8 text-glow-yellow">🎮 LIVE CHALLENGE!</h3>
+                <div class="bg-black/60 p-4 md:p-8 rounded-xl border border-yellow-500/30 mb-4 md:mb-8 text-left">
+                    <p class="text-yellow-500 font-mono text-[10px] md:text-sm mb-2">>_ DATA_TARGET.txt</p>
+                    <p class="text-xs md:text-xl text-white font-medium italic">
+                        "Menjelang Sensus Ekonomi 2026, pertumbuhan sektor usaha digital kreatif dan F&B di Bangka Belitung diprediksi mendominasi kalangan anak muda."
+                    </p>
+                </div>
+                <div class="bg-white/5 p-4 md:p-6 rounded-xl border border-white/10">
+                    <p class="text-base md:text-2xl mb-2 font-bold text-white">Misi (Waktu 5 Menit):</p>
+                    <p class="text-slate-200 text-xs md:text-lg mb-4">Bikin 1 ide judul konten pakai prinsip <strong>Catchy Hook!</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-13" class="slide-section flex flex-col justify-between">
         <div class="w-full max-w-5xl mx-auto flex-grow flex flex-col justify-center text-center mt-6">
-            <div data-aos="fade-up" class="mb-8">
+            <div data-aos="fade-up" class="mb-6 md:mb-12">
                 <blockquote class="text-xl sm:text-3xl md:text-5xl font-black text-white leading-tight">
                     "Data tanpa cerita cuma angka di hardisk. Data dengan kreativitas <span class="text-neonBlue text-glow-blue">mengubah dunia</span>."
                 </blockquote>
             </div>
 
             <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-6 md:p-12 border-t-4 md:border-t-8 border-neonPink relative bg-pink-900/10 w-full">
-                <h3 class="text-2xl md:text-4xl font-black mb-4 flex items-center justify-center gap-2">Mission Accomplished! 🏁</h3>
+                <h3 class="text-xl md:text-4xl font-black mb-4 flex items-center justify-center gap-2">Mission Accomplished! 🏁</h3>
                 
                 <p class="text-slate-100 mb-6 text-sm md:text-lg">
                     Mulai besok, bikin minimal 1 Story/Reels. Jangan lupa tag medsos resmi kita.
@@ -302,7 +374,7 @@
             </div>
         </div>
 
-        <footer class="w-full max-w-6xl mx-auto mt-6 mb-2 glass-card p-4 text-center flex flex-col md:flex-row justify-between items-center gap-2 bg-white/5 border-neonBlue border-b-2">
+        <footer class="w-full max-w-6xl mx-auto mt-6 glass-card p-4 text-center flex flex-col md:flex-row justify-between items-center gap-2 bg-white/5 border-neonBlue border-b-2">
             <div class="text-gray-300">
                 <span class="block text-base md:text-xl font-black text-white tracking-wide">Narezi Febriansa</span>
                 <span class="text-[10px] md:text-sm">Pojok Statistik UBB</span>
@@ -316,7 +388,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 600, once: true, offset: 20 }); // Offset diperkecil untuk mobile
+        AOS.init({ duration: 600, once: true, offset: 20 });
 
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('main-container');
