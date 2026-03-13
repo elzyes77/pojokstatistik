@@ -2,7 +2,7 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LEVEL UP! Agen Statistik - Narezi Febriansa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800;900&display=swap" rel="stylesheet">
@@ -23,373 +23,300 @@
     </script>
     <style>
         body { background-color: #09090b; color: #f8fafc; overflow-x: hidden; scroll-behavior: smooth; }
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; }
         .text-gradient { background: linear-gradient(135deg, #60a5fa, #c084fc, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .text-glow { text-shadow: 0 0 20px rgba(236, 72, 153, 0.8); } 
+        .text-glow { text-shadow: 0 0 15px rgba(236, 72, 153, 0.8); } 
         .text-glow-blue { text-shadow: 0 0 15px rgba(56, 189, 248, 0.8); }
         .text-glow-yellow { text-shadow: 0 0 15px rgba(234, 179, 8, 0.8); }
         .text-glow-green { text-shadow: 0 0 15px rgba(34, 197, 94, 0.8); }
         
-        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #09090b; }
         ::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 10px; }
         
-        /* Layout Presentasi (Snap Scroll & 100dvh untuk Mobile) */
-        .slide-section { scroll-snap-align: start; min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding-top: 100px; padding-bottom: 40px; position: relative; }
-        .scroll-container { height: 100dvh; overflow-y: auto; scroll-snap-type: y mandatory; position: relative; overflow-x: hidden; }
+        /* Layout Mobile-First */
+        .scroll-container { height: 100dvh; overflow-y: auto; overflow-x: hidden; scroll-snap-type: y proximity; }
+        .slide-section { scroll-snap-align: start; min-height: 100dvh; height: auto; display: flex; flex-direction: column; justify-content: center; padding: 80px 16px 40px 16px; width: 100%; max-width: 100vw; }
     </style>
 </head>
 <body class="antialiased selection:bg-neonPink selection:text-white scroll-container" id="main-container">
 
-    <div class="fixed top-[-20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-neonPurple/10 blur-[150px] -z-10 pointer-events-none"></div>
-    <div class="fixed bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-neonBlue/10 blur-[150px] -z-10 pointer-events-none"></div>
+    <div class="fixed top-[-10%] left-[-10%] w-[300px] h-[300px] md:w-[50vw] md:h-[50vw] rounded-full bg-neonPurple/10 blur-[100px] md:blur-[150px] -z-10 pointer-events-none"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[300px] h-[300px] md:w-[50vw] md:h-[50vw] rounded-full bg-neonBlue/10 blur-[100px] md:blur-[150px] -z-10 pointer-events-none"></div>
 
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 md:gap-3 opacity-50 hover:opacity-100 transition-opacity">
-        <button id="prevBtn" class="w-10 h-10 md:w-12 md:h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-neonBlue hover:scale-110 transition shadow-lg">
-            <i class="fa-solid fa-chevron-up text-lg md:text-xl"></i>
+    <div class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 opacity-60 hover:opacity-100 transition-opacity">
+        <button id="prevBtn" class="w-10 h-10 md:w-12 md:h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-neonBlue transition shadow-lg">
+            <i class="fa-solid fa-chevron-up text-sm md:text-xl"></i>
         </button>
-        <button id="nextBtn" class="w-10 h-10 md:w-12 md:h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-neonPink hover:scale-110 transition shadow-lg">
-            <i class="fa-solid fa-chevron-down text-lg md:text-xl"></i>
+        <button id="nextBtn" class="w-10 h-10 md:w-12 md:h-12 rounded-full glass-card flex items-center justify-center text-white hover:bg-neonPink transition shadow-lg">
+            <i class="fa-solid fa-chevron-down text-sm md:text-xl"></i>
         </button>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 bg-white shadow-lg px-4 md:px-6 py-2 md:py-3 flex flex-wrap justify-between items-center gap-2 md:gap-4 border-b border-gray-200">
+    <nav class="fixed top-0 w-full z-50 bg-white shadow-lg px-3 py-2 md:px-6 md:py-3 flex justify-between items-center border-b border-gray-200">
         <div class="flex items-center gap-2 md:gap-4">
-            <img src="logo_pojok_statistik.svg" alt="Pojok Statistik" class="h-6 sm:h-8 md:h-10">
-            <img src="logo ubb.png" alt="UBB Logo" class="h-8 sm:h-10 md:h-12 border-l border-gray-300 pl-2 md:pl-4">
-            <div class="font-bold text-xs sm:text-sm md:text-lg tracking-wider hidden sm:flex items-center gap-1 md:gap-2">
+            <img src="logo_pojok_statistik.svg" alt="Pojok Statistik" class="h-6 md:h-10">
+            <img src="logo ubb.png" alt="UBB Logo" class="h-7 md:h-12 border-l border-gray-300 pl-2 md:pl-4">
+            <div class="font-bold text-sm md:text-lg tracking-wider hidden md:flex items-center gap-2">
                 <i class="fa-solid fa-rocket text-neonPink"></i>
                 <span class="text-gray-900">PojokStatistik<span class="text-neonBlue">LevelUp</span></span>
             </div>
         </div>
         <div class="flex items-center gap-2 md:gap-4">
-            <img src="Logo BPS Babel (kanan biru)-01 (1).png" alt="BPS Babel Logo" class="h-10 sm:h-12 md:h-20 transition-all duration-300">
-            <div class="hidden xl:flex flex-col text-xs text-right text-gray-600 font-medium">
+            <img src="Logo BPS Babel (kanan biru)-01 (1).png" alt="BPS Babel Logo" class="h-8 md:h-14 lg:h-16 transition-all">
+            <div class="hidden lg:flex flex-col text-xs text-right text-gray-600 font-medium">
                 <span>Pusat Pembinaan & Pengembangan</span>
                 <span>Pojok Statistik UBB</span>
             </div>
         </div>
     </nav>
 
-    <header id="section-1" class="slide-section px-4 md:px-6 py-10">
-        <div class="w-full flex flex-col items-center text-center">
-            <div data-aos="fade-down" class="px-4 py-1.5 md:px-5 md:py-2 rounded-full bg-white/10 border border-white/20 text-xs md:text-sm font-bold mb-4 md:mb-6 text-neonBlue tracking-widest uppercase mt-4">
-                <i class="fa-solid fa-satellite-dish mr-2"></i>Sensus Ekonomi 2026
+    <section id="section-1" class="slide-section">
+        <div class="w-full flex flex-col items-center text-center max-w-5xl mx-auto">
+            <div data-aos="fade-down" class="px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs md:text-sm font-bold mb-4 text-neonBlue uppercase mt-4">
+                <i class="fa-solid fa-gamepad mr-1"></i> Sensus Ekonomi 2026
             </div>
             
-            <h1 data-aos="zoom-in" class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-2 md:mb-4 tracking-tight leading-tight">
+            <h1 data-aos="zoom-in" class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-2 tracking-tight leading-tight">
                 LEVEL <span class="text-gradient">UP!</span> 🚀<br>
-                <span class="text-xl sm:text-3xl md:text-5xl text-white text-glow-blue mt-1 md:mt-2 block">Agen Statistik di Era Konten</span>
+                <span class="text-xl sm:text-2xl md:text-5xl text-white text-glow-blue mt-1 block">Agen Statistik Era Konten</span>
             </h1>
 
-            <div data-aos="zoom-in" data-aos-delay="100" class="my-4 md:my-8 glass-card px-6 py-3 md:px-10 md:py-5 border-b-4 border-neonPink inline-block">
-                <p class="text-sm md:text-lg text-gray-300 mb-0 md:mb-1 font-medium">Speaker:</p>
-                <p class="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-wide">
+            <div data-aos="zoom-in" data-aos-delay="100" class="my-4 md:my-8 glass-card px-5 py-3 md:px-10 md:py-5 border-b-2 md:border-b-4 border-neonPink inline-block w-full sm:w-auto">
+                <p class="text-xs md:text-lg text-gray-300 font-medium">Speaker:</p>
+                <p class="text-2xl md:text-5xl font-black text-white tracking-wide">
                     Narezi <span class="text-neonPink text-glow">Febriansa</span>
                 </p>
-                <p class="text-xs md:text-sm text-gray-300 mt-1 md:mt-2 font-semibold">13 Maret 2026 | Pojok Statistik UBB</p>
+                <p class="text-[10px] md:text-sm text-gray-300 mt-1 font-semibold">13 Maret 2026 | Pojok Statistik UBB</p>
             </div>
 
-            <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-5 md:p-8 border-l-4 border-neonBlue text-left max-w-4xl w-full">
-                <p class="text-slate-100 text-sm md:text-lg lg:text-xl leading-relaxed">
-                    "Halo semuanya! Vibe check dulu nih, suaranya mana? Menjadi 'Agen Statistik' sekarang bukan cuma soal ngumpulin data, tapi gimana caranya data itu nggak berhenti di laci meja, tapi bisa nembus FYP TikTok atau Instagram. Siap buat upgrade skill? Kita mulai."
+            <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-4 md:p-8 border-l-4 border-neonBlue text-left w-full">
+                <p class="text-slate-100 text-sm md:text-lg leading-relaxed">
+                    "Halo semuanya! Vibe check dulu nih, suaranya mana? Menjadi 'Agen Statistik' sekarang bukan cuma soal ngumpulin data, tapi gimana caranya data itu nggak berhenti di laci meja, tapi bisa nembus FYP TikTok/IG. Siap buat upgrade skill? Kita mulai."
                 </p>
             </div>
         </div>
-    </header>
+    </section>
 
-    <section id="section-2" class="slide-section px-4 md:px-6">
-        <div class="max-w-5xl mx-auto w-full">
-            <div data-aos="fade-right" class="glass-card p-6 md:p-12 border-l-4 border-neonPink relative flex flex-col md:flex-row items-center gap-6 md:gap-10">
+    <section id="section-2" class="slide-section">
+        <div class="w-full max-w-5xl mx-auto">
+            <div data-aos="fade-right" class="glass-card p-5 md:p-10 border-l-4 border-neonPink flex flex-col md:flex-row items-center gap-6">
                 <div class="flex-grow w-full">
-                    <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonPink uppercase mb-2">Slide 2: Ice Breaker</h2>
-                    <h3 class="text-2xl sm:text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight">"Jujur-jujuran: Berapa jam screen time kamu?"</h3>
+                    <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonPink uppercase mb-1">Slide 2: Ice Breaker</h2>
+                    <h3 class="text-2xl md:text-5xl font-black mb-4 leading-tight">"Jujur-jujuran: Screen time kamu?"</h3>
                     
-                    <div class="bg-black/40 p-4 md:p-6 rounded-xl border border-white/10 mb-4 md:mb-6 text-slate-100 leading-relaxed text-sm md:text-lg shadow-inner">
-                        <p class="mb-3">Ayo keluarin HP kalian, scan QR Code di depan. Jujur aja, <em>no cap</em>.</p>
-                        <p class="text-neonPink font-bold">Insight:</p>
-                        <p>Rata-rata kita menghabiskan 7+ jam sehari di internet. Dari 7 jam itu, berapa detik mereka mau melihat data statistik kita kalau kemasannya membosankan?</p>
+                    <div class="bg-black/40 p-4 md:p-6 rounded-xl border border-white/10 text-slate-100 text-sm md:text-lg">
+                        <p class="mb-2">Ayo keluarin HP kalian, scan QR Code di depan. Jujur aja, <em>no cap</em>.</p>
+                        <p class="text-neonPink font-bold mt-3">Insight:</p>
+                        <p>Rata-rata kita menghabiskan 7+ jam sehari di internet. Berapa detik mereka mau melihat data statistik kita kalau kemasannya membosankan?</p>
                     </div>
                 </div>
-                <div data-aos="zoom-in" data-aos-delay="200" class="flex-shrink-0 flex flex-col items-center">
-                    <div class="w-32 h-32 md:w-56 md:h-56 bg-white border-2 md:border-4 border-white rounded-xl md:rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(236,72,153,0.5)] overflow-hidden">
-                        <img src="mentimeter_qr_code.png" alt="Mentimeter QR Code" class="w-full h-full object-contain">
+                <div data-aos="zoom-in" data-aos-delay="200" class="flex-shrink-0 flex flex-col items-center w-full md:w-auto">
+                    <div class="w-32 h-32 md:w-48 md:h-48 bg-white border-2 md:border-4 border-white rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(236,72,153,0.5)] overflow-hidden">
+                        <img src="mentimeter_qr_code.png" alt="QR Code" class="w-full h-full object-contain">
                     </div>
-                    <p class="mt-3 md:mt-5 text-sm md:text-lg text-white font-black bg-neonPink px-4 py-1.5 md:px-6 md:py-2 rounded-full animate-bounce">Scan QR to Vote</p>
+                    <p class="mt-3 text-xs md:text-base text-white font-black bg-neonPink px-4 py-1.5 rounded-full animate-bounce">Scan QR to Vote</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="section-3" class="slide-section px-4 md:px-6">
-        <div class="max-w-4xl mx-auto w-full">
-            <div data-aos="fade-up" class="glass-card p-6 md:p-14 border-t-4 border-neonBlue text-center relative overflow-hidden">
-                <i class="fa-solid fa-brain absolute left-[-5%] top-[-10%] text-[10rem] md:text-[15rem] text-white/5 -z-10"></i>
+    <section id="section-3" class="slide-section">
+        <div class="w-full max-w-4xl mx-auto">
+            <div data-aos="fade-up" class="glass-card p-6 md:p-12 border-t-4 border-neonBlue text-center relative overflow-hidden">
                 <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonBlue uppercase mb-2">Slide 3: Identity</h2>
-                <h3 class="text-3xl sm:text-4xl md:text-6xl font-black mb-4 md:mb-8 leading-tight">
+                <h3 class="text-3xl md:text-6xl font-black mb-4 md:mb-6 leading-tight">
                     Uninstall Mindset Lama.<br>Kalian = <span class="text-neonBlue text-glow-blue">Data Benders</span>.
                 </h3>
-                <div class="bg-black/40 p-5 md:p-8 rounded-xl border border-white/10 text-slate-100 leading-relaxed text-sm md:text-xl text-left">
-                    <p class="mb-3 md:mb-4">Statistik itu sering dianggap ibarat NPC (Non-Playable Character) di dalam game—ada, tapi nggak dipedulikan.</p>
-                    <p><strong>Kita harus uninstall mindset itu.</strong> Di era informasi tanpa filter, memegang data yang valid ibarat punya <em>cheat code</em> menuju Sensus Ekonomi 2026.</p>
+                <div class="bg-black/40 p-4 md:p-6 rounded-xl border border-white/10 text-slate-100 text-sm md:text-lg text-left">
+                    <p class="mb-3">Statistik itu sering dianggap ibarat NPC (Non-Playable Character) di dalam game—ada, tapi nggak dipedulikan.</p>
+                    <p><strong>Kita harus uninstall mindset itu.</strong> Di era informasi tanpa filter, memegang data valid ibarat punya <em>cheat code</em> menuju Sensus Ekonomi 2026.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="section-4" class="slide-section px-4 md:px-6">
-        <div class="max-w-6xl mx-auto w-full">
-            <div class="text-center mb-6 md:mb-10" data-aos="fade-up">
-                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonPurple uppercase mb-2">Slide 4 & 5: The Reality</h2>
-                <h3 class="text-3xl md:text-5xl font-black mb-2 md:mb-4">Selamat Datang di <span class="text-gradient">"Creator Era"</span></h3>
-                <p class="text-slate-200 text-sm md:text-lg">Mari bicara pakai data.</p>
+    <section id="section-4" class="slide-section">
+        <div class="w-full max-w-6xl mx-auto">
+            <div class="text-center mb-6" data-aos="fade-up">
+                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonPurple uppercase mb-1">Slide 4 & 5: Reality</h2>
+                <h3 class="text-2xl md:text-5xl font-black mb-2">Selamat Datang di <span class="text-gradient">"Creator Era"</span></h3>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                <div data-aos="zoom-in" class="glass-card p-5 md:p-8 border-t-4 border-neonPurple text-center flex flex-col justify-center">
-                    <span class="block text-4xl md:text-6xl font-black text-neonPurple mb-2 md:mb-4 text-glow">8 Detik</span>
-                    <h4 class="font-bold text-base md:text-xl mb-1 md:mb-2 text-white">Attention Span</h4>
-                    <p class="text-slate-300 text-xs md:text-sm">Kalau 3 detik pertama nggak ada hook, jari otomatis swipe up.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div data-aos="zoom-in" class="glass-card p-5 border-t-2 md:border-t-4 border-neonPurple text-center">
+                    <span class="block text-3xl md:text-5xl font-black text-neonPurple mb-2 text-glow">8 Detik</span>
+                    <h4 class="font-bold text-sm md:text-xl text-white">Attention Span</h4>
+                    <p class="text-slate-300 text-xs md:text-sm mt-1">Kalau 3 detik pertama nggak ada hook, jari otomatis swipe up.</p>
                 </div>
-                <div data-aos="zoom-in" data-aos-delay="100" class="glass-card p-5 md:p-8 border-t-4 border-neonPink text-center flex flex-col justify-center">
-                    <span class="block text-4xl md:text-6xl font-black text-neonPink mb-2 md:mb-4 text-glow">$480 Miliar</span>
-                    <h4 class="font-bold text-base md:text-xl mb-1 md:mb-2 text-white">Creator Economy</h4>
-                    <p class="text-slate-300 text-xs md:text-sm">Perhatian (attention) adalah mata uang baru yang bernilai raksasa.</p>
+                <div data-aos="zoom-in" data-aos-delay="100" class="glass-card p-5 border-t-2 md:border-t-4 border-neonPink text-center">
+                    <span class="block text-3xl md:text-5xl font-black text-neonPink mb-2 text-glow">$480 Miliar</span>
+                    <h4 class="font-bold text-sm md:text-xl text-white">Creator Economy</h4>
+                    <p class="text-slate-300 text-xs md:text-sm mt-1">Perhatian (attention) adalah mata uang baru yang bernilai raksasa.</p>
                 </div>
-                <div data-aos="zoom-in" data-aos-delay="200" class="glass-card p-5 md:p-8 border-t-4 border-neonBlue text-center flex flex-col justify-center sm:col-span-2 md:col-span-1">
-                    <span class="block text-4xl md:text-6xl font-black text-neonBlue mb-2 md:mb-4 text-glow-blue">40%</span>
-                    <h4 class="font-bold text-base md:text-xl mb-1 md:mb-2 text-white">The "Search" Shift</h4>
-                    <p class="text-slate-300 text-xs md:text-sm">Anak muda tidak pakai Google, mereka pakai TikTok/IG mencari "Visual Answer".</p>
+                <div data-aos="zoom-in" data-aos-delay="200" class="glass-card p-5 border-t-2 md:border-t-4 border-neonBlue text-center">
+                    <span class="block text-3xl md:text-5xl font-black text-neonBlue mb-2 text-glow-blue">40%</span>
+                    <h4 class="font-bold text-sm md:text-xl text-white">The "Search" Shift</h4>
+                    <p class="text-slate-300 text-xs md:text-sm mt-1">Anak muda pakai TikTok/IG mencari "Visual Answer", bukan Google.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="section-5" class="slide-section px-4 md:px-6">
-        <div class="max-w-5xl mx-auto w-full">
-            <div data-aos="zoom-in" class="glass-card p-6 md:p-14 border-4 border-red-500/50 text-center relative overflow-hidden bg-red-900/10">
-                <h2 class="text-xs md:text-sm font-bold tracking-widest text-red-400 uppercase mb-2">Slide 6: The Challenge</h2>
-                <h3 class="text-4xl md:text-7xl font-black mb-6 md:mb-10 text-red-500 text-glow-red">The Boss Fight! 👾</h3>
+    <section id="section-5" class="slide-section">
+        <div class="w-full max-w-5xl mx-auto">
+            <div data-aos="zoom-in" class="glass-card p-6 md:p-12 border-2 md:border-4 border-red-500/50 text-center bg-red-900/10">
+                <h2 class="text-xs md:text-sm font-bold tracking-widest text-red-400 uppercase mb-2">Slide 6: Challenge</h2>
+                <h3 class="text-3xl md:text-6xl font-black mb-6 text-red-500 text-glow-red">The Boss Fight! 👾</h3>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-6 md:mb-8">
-                    <div class="bg-black/50 p-4 md:p-6 rounded-xl border border-red-500/30 text-left">
-                        <h4 class="text-xl md:text-2xl font-black text-red-400 mb-2 border-b border-red-500/30 pb-2">Info Hoaks</h4>
-                        <p class="text-slate-200 text-sm md:text-base">Grafik ngawur + Sound jedag-jedug + Emosi.</p>
-                        <p class="text-xl md:text-3xl font-black text-red-500 mt-2 md:mt-4">Jutaan Views 🔥</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-black/50 p-4 rounded-xl border border-red-500/30 text-left">
+                        <h4 class="text-lg md:text-2xl font-black text-red-400 mb-2 border-b border-red-500/30 pb-1">Info Hoaks</h4>
+                        <p class="text-slate-200 text-xs md:text-sm">Grafik ngawur + Sound jedag-jedug + Emosi.</p>
+                        <p class="text-xl md:text-2xl font-black text-red-500 mt-2">Jutaan Views 🔥</p>
                     </div>
-                    <div class="bg-black/50 p-4 md:p-6 rounded-xl border border-blue-500/30 text-left">
-                        <h4 class="text-xl md:text-2xl font-black text-blue-400 mb-2 border-b border-blue-500/30 pb-2">Data Resmi BPS</h4>
-                        <p class="text-slate-200 text-sm md:text-base">Metodologi ketat + Bahasa birokrasi kaku.</p>
-                        <p class="text-xl md:text-3xl font-black text-blue-500 mt-2 md:mt-4">Ratusan Views 📉</p>
+                    <div class="bg-black/50 p-4 rounded-xl border border-blue-500/30 text-left">
+                        <h4 class="text-lg md:text-2xl font-black text-blue-400 mb-2 border-b border-blue-500/30 pb-1">Data Resmi BPS</h4>
+                        <p class="text-slate-200 text-xs md:text-sm">Metodologi ketat + Bahasa birokrasi kaku.</p>
+                        <p class="text-xl md:text-2xl font-black text-blue-500 mt-2">Ratusan Views 📉</p>
                     </div>
                 </div>
-                <p class="text-sm md:text-xl text-white font-bold bg-red-500/20 py-2 md:py-3 px-2 rounded-lg border border-red-500/50">Misi kita adalah MEREBUT KEMBALI narasi tersebut!</p>
+                <p class="text-xs md:text-lg text-white font-bold bg-red-500/20 py-2 px-3 rounded-lg border border-red-500/50">Misi kita adalah MEREBUT KEMBALI narasi tersebut!</p>
             </div>
         </div>
     </section>
 
-    <section id="section-6" class="slide-section px-4 md:px-6">
-        <div class="max-w-6xl mx-auto w-full">
-            <div class="text-center mb-6 md:mb-10" data-aos="fade-up">
-                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonYellow uppercase mb-2">Slide 7-9: Skill Tree Part 1</h2>
-                <h3 class="text-3xl md:text-6xl font-black mb-2 md:mb-4">Framework <span class="text-gradient">C.R.E.A.T.E</span></h3>
+    <section id="section-6" class="slide-section">
+        <div class="w-full max-w-6xl mx-auto">
+            <div class="text-center mb-6" data-aos="fade-up">
+                <h3 class="text-2xl md:text-5xl font-black mb-2">Framework <span class="text-gradient">C.R.E.A.T.E</span></h3>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                <div data-aos="fade-right" class="glass-card p-5 md:p-8 border-l-4 border-pink-500">
-                    <div class="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-pink-500 text-white flex items-center justify-center font-black text-xl md:text-3xl shadow-[0_0_15px_rgba(236,72,153,0.5)]">C</div>
-                        <h4 class="text-xl md:text-3xl font-bold text-white">Catchy Hook</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div data-aos="fade-right" class="glass-card p-5 border-l-4 border-pink-500">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-pink-500 text-white flex items-center justify-center font-black text-xl shadow-[0_0_15px_rgba(236,72,153,0.5)]">C</div>
+                        <h4 class="text-xl md:text-2xl font-bold text-white">Catchy Hook</h4>
                     </div>
-                    <p class="text-pink-400 font-bold mb-2 text-sm md:text-base">3 Detik Pertama!</p>
-                    <div class="bg-black/30 p-4 rounded-lg text-slate-200 leading-relaxed text-xs md:text-sm">
-                        <p>Jangan mulai dengan: <em>'Berdasarkan Berita Resmi Statistik...'</em></p>
-                        <p class="mt-2"><strong>Gunakan hook kreator:</strong><br>"POV: Kamu baru sadar ternyata banyak warkop baru di kotamu!"</p>
-                    </div>
+                    <p class="text-pink-400 font-bold mb-1 text-xs md:text-sm">3 Detik Pertama!</p>
+                    <p class="text-slate-200 text-xs md:text-sm">Gunakan hook kreator: <em>"POV: Kamu baru sadar ternyata banyak warkop baru di kotamu!"</em></p>
                 </div>
-                <div data-aos="fade-left" class="glass-card p-5 md:p-8 border-l-4 border-orange-500">
-                    <div class="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-orange-500 text-white flex items-center justify-center font-black text-xl md:text-3xl shadow-[0_0_15px_rgba(249,115,22,0.5)]">R</div>
-                        <h4 class="text-xl md:text-3xl font-bold text-white">Relatable</h4>
+                <div data-aos="fade-left" class="glass-card p-5 border-l-4 border-orange-500">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center font-black text-xl shadow-[0_0_15px_rgba(249,115,22,0.5)]">R</div>
+                        <h4 class="text-xl md:text-2xl font-bold text-white">Relatable</h4>
                     </div>
-                    <p class="text-orange-400 font-bold mb-2 text-sm md:text-base">Bawa Makro ke Mikro</p>
-                    <div class="bg-black/30 p-4 rounded-lg text-slate-200 leading-relaxed text-xs md:text-sm">
-                        <p>Terjemahkan angka makro ke tongkrongan mereka.</p>
-                        <p class="mt-2"><strong>Contoh SE2026:</strong><br>"Kita lagi mendata berapa banyak sih coffee shop tempat kalian nongkrong di Babel!"</p>
-                    </div>
+                    <p class="text-orange-400 font-bold mb-1 text-xs md:text-sm">Bawa Makro ke Mikro</p>
+                    <p class="text-slate-200 text-xs md:text-sm">Contoh SE2026: <em>"Kita lagi mendata berapa banyak sih coffee shop tempat kalian nongkrong di Babel!"</em></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="section-7" class="slide-section px-4 md:px-6">
-        <div class="max-w-6xl mx-auto w-full">
-            <div class="text-center mb-6 md:mb-10" data-aos="fade-up">
-                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonYellow uppercase mb-2">Slide 10-11: Skill Tree Part 2</h2>
-                <h3 class="text-3xl md:text-5xl font-black mb-2">Level Up Your <span class="text-gradient">Content</span></h3>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                <div data-aos="fade-right" class="glass-card p-5 md:p-8 border-l-4 border-yellow-400">
-                    <div class="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-yellow-400 text-black flex items-center justify-center font-black text-xl md:text-3xl">E</div>
-                        <h4 class="text-xl md:text-3xl font-bold text-white">Entertaining</h4>
+    <section id="section-7" class="slide-section">
+        <div class="w-full max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div data-aos="fade-right" class="glass-card p-5 border-l-4 border-yellow-400">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-yellow-400 text-black flex items-center justify-center font-black text-xl">E</div>
+                        <h4 class="text-xl md:text-2xl font-bold text-white">Entertaining</h4>
                     </div>
-                    <p class="text-yellow-400 font-bold mb-2 text-sm md:text-base">Edutainment (Gunakan Tren!)</p>
-                    <div class="bg-black/30 p-4 rounded-lg text-slate-200 leading-relaxed text-xs md:text-sm">
-                        <p>Jangan post tabel Excel kotak-kotak.</p>
-                        <ul class="list-disc pl-5 mt-2 space-y-1">
-                            <li>Video <strong>GRWM</strong> siap-siap survei.</li>
-                            <li>Fitur <strong>Green Screen</strong> tunjuk angka kaget.</li>
-                        </ul>
-                    </div>
+                    <p class="text-slate-200 text-xs md:text-sm">Gunakan tren: Video <strong>GRWM</strong> siap-siap survei, atau fitur <strong>Green Screen</strong> tunjuk angka kaget.</p>
                 </div>
-                <div data-aos="fade-left" class="glass-card p-5 md:p-8 border-l-4 border-green-500">
-                    <div class="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-green-500 text-white flex items-center justify-center font-black text-xl md:text-3xl">A</div>
-                        <h4 class="text-xl md:text-3xl font-bold text-white">Authentic</h4>
+                <div data-aos="fade-left" class="glass-card p-5 border-l-4 border-green-500">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-green-500 text-white flex items-center justify-center font-black text-xl">A</div>
+                        <h4 class="text-xl md:text-2xl font-bold text-white">Authentic</h4>
                     </div>
-                    <p class="text-green-400 font-bold mb-2 text-sm md:text-base">The Ultimate Flex: DATA ASLI</p>
-                    <div class="bg-black/30 p-4 rounded-lg text-slate-200 leading-relaxed text-xs md:text-sm">
-                        <p>Kalian memegang data resmi BPS Babel. Saat yang lain beropini, kalian bisa bilang: <strong>"Nih, data aslinya bicara apa."</strong></p>
-                    </div>
+                    <p class="text-slate-200 text-xs md:text-sm">Kalian memegang data resmi BPS Babel. Saat yang lain beropini, kalian punya fakta absolut.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="section-8" class="slide-section px-4 md:px-6">
-        <div class="max-w-6xl mx-auto w-full">
-            <div class="text-center mb-6 md:mb-10" data-aos="fade-up">
-                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonYellow uppercase mb-2">Slide 12-13: Skill Tree Part 3</h2>
-                <h3 class="text-3xl md:text-5xl font-black mb-2">The Final <span class="text-gradient">Touch</span></h3>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                <div data-aos="fade-right" class="glass-card p-5 md:p-8 border-l-4 border-blue-500">
-                    <div class="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-blue-500 text-white flex items-center justify-center font-black text-xl md:text-3xl">T</div>
-                        <h4 class="text-xl md:text-3xl font-bold text-white">Tools & Tech</h4>
+    <section id="section-8" class="slide-section">
+        <div class="w-full max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div data-aos="fade-right" class="glass-card p-5 border-l-4 border-blue-500">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-blue-500 text-white flex items-center justify-center font-black text-xl">T</div>
+                        <h4 class="text-xl md:text-2xl font-bold text-white">Tools & Tech</h4>
                     </div>
-                    <p class="text-blue-400 font-bold mb-2 text-sm md:text-base">Work Smart, Not Hard</p>
-                    <div class="bg-black/30 p-4 rounded-lg text-slate-200 leading-relaxed text-xs md:text-sm">
-                        <p>Di era AI, skill paling mahal itu Ide Storytelling-nya.</p>
-                        <p class="mt-2">Pakai Canva, CapCut, dan Gemini/ChatGPT untuk bantu bikin caption.</p>
+                    <p class="text-slate-200 text-xs md:text-sm">Pakai Canva, CapCut, dan Gemini/ChatGPT untuk bantu bikin caption gaya Gen Z.</p>
+                </div>
+                <div data-aos="fade-left" class="glass-card p-5 border-l-4 border-purple-500">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500 text-white flex items-center justify-center font-black text-xl">E</div>
+                        <h4 class="text-xl md:text-2xl font-bold text-white">Emotion</h4>
+                    </div>
+                    <p class="text-slate-200 text-xs md:text-sm">Data yang memicu emosi (kaget, bangga, validasi) adalah data yang di-share!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-9" class="slide-section">
+        <div class="w-full max-w-6xl mx-auto">
+            <div class="text-center mb-6" data-aos="fade-up">
+                <h3 class="text-2xl md:text-5xl font-black mb-2">Bedah Konten: <span class="text-neonBlue text-glow-blue">BRS vs FYP 🛠️</span></h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div data-aos="fade-right" class="glass-card p-5 border-t-4 border-gray-600 bg-gray-900/50">
+                    <h4 class="text-sm md:text-xl font-black text-gray-400 mb-2">THE BORING WAY</h4>
+                    <div class="bg-black/50 p-3 rounded-lg text-gray-400 text-xs italic">
+                        "Tingkat Penghunian Kamar (TPK) hotel di Provinsi Kepulauan Babel tercatat sebesar 30,5 persen..."
                     </div>
                 </div>
-                <div data-aos="fade-left" class="glass-card p-5 md:p-8 border-l-4 border-purple-500">
-                    <div class="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-purple-500 text-white flex items-center justify-center font-black text-xl md:text-3xl">E</div>
-                        <h4 class="text-xl md:text-3xl font-bold text-white">Emotion</h4>
-                    </div>
-                    <p class="text-purple-400 font-bold mb-2 text-sm md:text-base">Data yang Diingat = Emosi</p>
-                    <div class="bg-black/30 p-4 rounded-lg text-slate-200 leading-relaxed text-xs md:text-sm">
-                        <p>Angka 10% nggak akan diingat. Tapi emosi kaget (<em>"Wah masa pengangguran segitu?!"</em>) yang bikin konten di-share!</p>
+                <div data-aos="fade-left" class="glass-card p-5 border-t-4 border-neonGreen bg-green-900/20">
+                    <h4 class="text-sm md:text-xl font-black text-green-400 mb-2">THE LEVEL UP WAY</h4>
+                    <div class="bg-black/50 p-3 rounded-lg text-slate-100 text-xs">
+                        "POV: Liburan di Babel kerasa sepi banget? 🏖️ Ternyata, ada <strong>7 dari 10 kamar hotel</strong> yang kosong lho! Waktunya staycation."
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="section-9" class="slide-section px-4 md:px-6">
-        <div class="max-w-6xl mx-auto w-full">
-            <div class="text-center mb-6 md:mb-10" data-aos="fade-up">
-                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonBlue uppercase mb-2">Case Study</h2>
-                <h3 class="text-3xl md:text-5xl font-black mb-2">Bedah Konten: <span class="text-neonBlue text-glow-blue">BRS vs FYP 🛠️</span></h3>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                <div data-aos="fade-right" class="glass-card p-5 md:p-8 border-t-4 md:border-t-8 border-gray-600 bg-gray-900/50">
-                    <h4 class="text-lg md:text-2xl font-black text-gray-400 mb-2 md:mb-4"><i class="fa-solid fa-file-lines"></i> THE BORING WAY</h4>
-                    <p class="text-gray-400 font-mono text-[10px] md:text-xs mb-2">Teks Asli Rilis (BRS):</p>
-                    <div class="bg-black/50 p-4 md:p-6 rounded-lg text-gray-400 text-xs md:text-sm italic">
-                        "Tingkat Penghunian Kamar (TPK) hotel di Provinsi Kepulauan Babel tercatat sebesar 30,5 persen, turun sebesar 4,2 poin..."
-                    </div>
-                </div>
-                <div data-aos="fade-left" class="glass-card p-5 md:p-8 border-t-4 md:border-t-8 border-neonGreen bg-green-900/20">
-                    <h4 class="text-lg md:text-2xl font-black text-green-400 mb-2 md:mb-4"><i class="fa-solid fa-rocket"></i> THE LEVEL UP WAY</h4>
-                    <p class="text-green-400 font-mono text-[10px] md:text-xs mb-2">Skrip Video (C.R.E.A.T.E):</p>
-                    <div class="bg-black/50 p-4 md:p-6 rounded-lg text-slate-100 text-xs md:text-sm">
-                        "POV: Liburan di Babel kerasa sepi banget, emang iya? 🏖️<br>
-                        Ternyata, dari data terbaru BPS, ada <strong>7 dari 10 kamar hotel</strong> yang kosong lho! Ini saatnya yang pas banget buat kalian staycation."
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="section-10" class="slide-section px-4 md:px-6">
-        <div class="max-w-4xl mx-auto w-full">
-            <div data-aos="zoom-in" class="glass-card p-6 md:p-10 border-4 border-neonPurple relative overflow-hidden bg-purple-900/10">
-                <h2 class="text-xs md:text-sm font-bold tracking-widest text-neonPurple uppercase mb-2">Hacks</h2>
-                <h3 class="text-2xl md:text-5xl font-black mb-4 md:mb-6 text-white">Jurus Nge-Prompt AI 🤖</h3>
-                
-                <div class="bg-black/60 p-4 md:p-6 rounded-xl border border-purple-500/30 text-left shadow-2xl">
-                    <p class="text-sm md:text-xl text-white font-medium leading-relaxed font-mono">
-                        "Bertindaklah sebagai <span class="text-neonPink">[Sosmed Manager BPS Babel]</span>. Buatkan skrip TikTok durasi <span class="text-neonPink">[30 detik]</span> yang menjelaskan data <span class="text-neonPink">[Inflasi Februari 2026]</span>.<br><br>
-                        Gunakan gaya bahasa <span class="text-neonPink">[Gen Z]</span>, tambahkan <span class="text-neonPink">[Hook memancing]</span>, akhiri dengan Call-to-Action <span class="text-neonPink">[baca web BPS]</span>."
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="section-11" class="slide-section px-4 md:px-6">
-        <div class="max-w-5xl mx-auto w-full">
-            <div data-aos="zoom-in" class="glass-card p-6 md:p-14 border-4 border-dashed border-neonYellow text-center relative bg-yellow-900/10">
-                <h3 class="text-3xl md:text-6xl font-black text-neonYellow mb-4 md:mb-8 text-glow-yellow">🎮 LIVE CHALLENGE!</h3>
-                <div class="bg-black/60 p-4 md:p-8 rounded-xl border border-yellow-500/30 mb-4 md:mb-8 text-left">
-                    <p class="text-yellow-500 font-mono text-[10px] md:text-sm mb-2">>_ DATA_TARGET.txt</p>
-                    <p class="text-sm md:text-2xl text-white font-medium italic">
-                        "Menjelang Sensus Ekonomi 2026, pertumbuhan sektor usaha digital kreatif dan F&B di Bangka Belitung diprediksi mendominasi kalangan anak muda."
-                    </p>
-                </div>
-                <div class="bg-white/5 p-4 md:p-6 rounded-xl border border-white/10">
-                    <p class="text-lg md:text-2xl mb-2 font-bold text-white">Misi (Waktu 5 Menit):</p>
-                    <p class="text-slate-200 text-sm md:text-lg mb-4">Bikin 1 ide judul konten pakai prinsip <strong>Catchy Hook!</strong></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="section-12" class="slide-section px-4 md:px-6 flex flex-col justify-between min-h-[100dvh]">
-        <div class="w-full max-w-5xl mx-auto flex-grow flex flex-col justify-center text-center pt-10 md:pt-20">
-            <div data-aos="fade-up" class="mb-8 md:mb-16">
-                <blockquote class="text-2xl sm:text-4xl md:text-6xl font-black text-white leading-tight mb-4 md:mb-8">
+    <section id="section-10" class="slide-section flex flex-col justify-between">
+        <div class="w-full max-w-5xl mx-auto flex-grow flex flex-col justify-center text-center mt-6">
+            <div data-aos="fade-up" class="mb-8">
+                <blockquote class="text-xl sm:text-3xl md:text-5xl font-black text-white leading-tight">
                     "Data tanpa cerita cuma angka di hardisk. Data dengan kreativitas <span class="text-neonBlue text-glow-blue">mengubah dunia</span>."
                 </blockquote>
             </div>
 
-            <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-6 md:p-12 border-t-4 md:border-t-8 border-neonPink relative bg-pink-900/10">
-                <h3 class="text-2xl md:text-5xl font-black mb-4 md:mb-6 flex items-center justify-center gap-2 md:gap-4">Mission Accomplished! <span class="text-3xl md:text-5xl animate-pulse">🏁</span></h3>
+            <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-6 md:p-12 border-t-4 md:border-t-8 border-neonPink relative bg-pink-900/10 w-full">
+                <h3 class="text-2xl md:text-4xl font-black mb-4 flex items-center justify-center gap-2">Mission Accomplished! 🏁</h3>
                 
-                <p class="text-slate-100 mb-6 md:mb-8 text-sm md:text-xl">
-                    Mulai besok, bikin minimal 1 Story/Reels bergaya kreator. Jangan lupa tag medsos resmi kita.
+                <p class="text-slate-100 mb-6 text-sm md:text-lg">
+                    Mulai besok, bikin minimal 1 Story/Reels. Jangan lupa tag medsos resmi kita.
                 </p>
                 
-                <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-6 md:mb-10">
-                    <span class="px-3 md:px-6 py-1 md:py-2 bg-blue-500/20 text-blue-300 border border-blue-500/50 rounded-full font-bold text-xs md:text-lg">#AgenStatistikLevelUp</span>
-                    <span class="px-3 md:px-6 py-1 md:py-2 bg-pink-500/20 text-pink-300 border border-pink-500/50 rounded-full font-bold text-xs md:text-lg">#SE2026</span>
+                <div class="flex flex-wrap justify-center gap-2 mb-6">
+                    <span class="px-3 md:px-5 py-1 md:py-2 bg-blue-500/20 text-blue-300 border border-blue-500/50 rounded-full font-bold text-[10px] md:text-sm">#AgenStatistikLevelUp</span>
+                    <span class="px-3 md:px-5 py-1 md:py-2 bg-pink-500/20 text-pink-300 border border-pink-500/50 rounded-full font-bold text-[10px] md:text-sm">#SE2026</span>
                 </div>
 
-                <button class="px-6 md:px-10 py-3 md:py-5 bg-white text-black font-black rounded-full text-sm md:text-xl hover:scale-110 transition shadow-lg w-full md:w-auto">
+                <button class="px-5 py-3 md:px-8 md:py-4 bg-white text-black font-black rounded-full text-sm md:text-lg w-full md:w-auto shadow-lg hover:scale-105 transition">
                     <i class="fa-solid fa-microphone mr-2"></i> Sesi QnA & Curhat
                 </button>
             </div>
         </div>
 
-        <footer class="w-full max-w-6xl mx-auto mt-8 mb-4 glass-card p-4 md:p-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4 bg-white/5 border-neonBlue border-b-2 md:border-b-4">
-            <div class="text-gray-300 text-xs md:text-base">
-                <span class="block text-lg md:text-2xl font-black text-white tracking-wide mb-0.5 md:mb-1">Narezi Febriansa</span>
-                Pojok Statistik Universitas Bangka Belitung
+        <footer class="w-full max-w-6xl mx-auto mt-6 mb-2 glass-card p-4 text-center flex flex-col md:flex-row justify-between items-center gap-2 bg-white/5 border-neonBlue border-b-2">
+            <div class="text-gray-300">
+                <span class="block text-base md:text-xl font-black text-white tracking-wide">Narezi Febriansa</span>
+                <span class="text-[10px] md:text-sm">Pojok Statistik UBB</span>
             </div>
-            <div class="text-gray-300 text-xs md:text-base md:text-right">
-                <span class="block font-bold text-white mb-0.5 md:mb-1 text-sm md:text-xl">13 Maret 2026</span>
-                BPS Provinsi Kepulauan Bangka Belitung
+            <div class="text-gray-300 md:text-right">
+                <span class="block font-bold text-white text-sm md:text-base">13 Maret 2026</span>
+                <span class="text-[10px] md:text-sm">BPS Provinsi Kepulauan Babel</span>
             </div>
         </footer>
     </section>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true, offset: 50 });
+        AOS.init({ duration: 600, once: true, offset: 20 }); // Offset diperkecil untuk mobile
 
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('main-container');
